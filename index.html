@@ -19,109 +19,233 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="<%= assetPrefix %>/deriv-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="title" content="Automate Your Trades | Tradingprint AI" />
-    <meta name="description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
-    <meta property="og:title" content="Tradingprint AI" />
-    <meta property="og:description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
-    <title>Automate Your Trades | Tradingprint AI</title>
+    <meta name="title" content="TradingPrint AI | Live Real-Money Trading Shell" />
+    <meta name="description" content="Automated live trading interface powered by TradingPrint AI. Manage risks, deploy production strategies, and monitor real market conditions." />
+    <meta property="og:title" content="TradingPrint AI - Real-Money Bot" />
+    <meta property="og:description" content="Automated live trading interface powered by TradingPrint AI." />
+    <title>TradingPrint AI | Live Real-Money Trading Bot</title>
     
     <style>
       :root {
         font-size: 62.5%;
+        /* System Color Design Tokens */
+        --tp-navy: #0e1626;
+        --tp-cyan: #00bcd4;
+        --tp-violet: #673ab7;
+        --tp-amber: #ffc107;
+        --tp-red: #ff444f;
+        --tp-white: #ffffff;
+        --tp-gray: #f4f5f6;
+        --tp-dark-gray: #333333;
       }
 
-      /* Outer Layer Top Navigation Overlay Wrapper */
-      .outer-nav-layer {
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--tp-navy);
+        color: var(--tp-white);
+        overflow: hidden;
+      }
+
+      /* Risk Warning Header Banner */
+      .risk-warning-banner {
+        background-color: var(--tp-red);
+        color: var(--tp-white);
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 6px 12px;
         position: relative;
-        z-index: 9999;
+        z-index: 10000;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Base Full-Screen Layout Wrapper */
+      .outer-wrap-shell {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 28px);
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Top Header Navigation Layer */
+      .outer-nav-layer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 24px;
-        background-color: #ffffff;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 12px 20px;
+        background-color: var(--tp-navy);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
 
-      /* Animated Title Styles */
+      /* Animated Title Markup rules */
       .animated-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #ff444f;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--tp-cyan);
         margin: 0;
         letter-spacing: -0.5px;
         opacity: 0;
         transform: translateX(-15px);
-        animation: slideInFade 1.2s ease-out forwards;
+        animation: tpSlideInFade 1.2s ease-out forwards;
       }
 
-      @keyframes slideInFade {
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+      @keyframes tpSlideInFade {
+        to { opacity: 1; transform: translateX(0); }
       }
 
-      /* Button Layout Grouping */
+      /* Navigation action buttons */
       .auth-buttons-group {
         display: flex;
-        gap: 12px;
-        align-items: center;
+        gap: 10px;
       }
 
-      /* Base Style Rules for Outer Layer Interaction Elements */
       .nav-btn {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         font-weight: 600;
-        padding: 8px 16px;
+        padding: 6px 14px;
         border-radius: 4px;
         cursor: pointer;
         transition: all 0.2s ease;
-        text-decoration: none;
-        border: 2px solid transparent;
+        border: 1.5px solid transparent;
       }
 
       .btn-login {
-        color: #333333;
+        color: var(--tp-white);
         background-color: transparent;
-        border-color: #e5e5e5;
+        border-color: rgba(255,255,255,0.2);
       }
-
-      .btn-login:hover {
-        background-color: #f5f5f5;
-        border-color: #d0d0d0;
-      }
+      .btn-login:hover { background-color: rgba(255,255,255,0.1); }
 
       .btn-signin {
-        color: #ffffff;
-        background-color: #ff444f;
+        color: var(--tp-navy);
+        background-color: var(--tp-cyan);
       }
+      .btn-signin:hover { background-color: #0097a7; }
 
-      .btn-signin:hover {
-        background-color: #eb3e48;
-      }
-
-      /* Seamless Moving Background Graph Component */
+      /* Horizontal Scrolling Background Graph component rules */
       .graph-container {
         position: relative;
         width: 100%;
-        height: 60px;
+        height: 40px;
         margin: 0;
         overflow: hidden;
-        background-color: #ffffff;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
+        background-color: rgba(14, 22, 38, 0.95);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .moving-graph {
         width: 200%;
         height: 100%;
-        animation: slideGraph 15s linear infinite;
+        animation: tpSlideGraph 18s linear infinite;
       }
 
-      @keyframes slideGraph {
+      @keyframes tpSlideGraph {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
+      }
+
+      /* Main Workspace: Split Dashboard Grid View */
+      .main-workspace-grid {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* Left Side Dashboard Panels: Holds AI, Scanner and Recovery options */
+      .sidebar-control-panel {
+        width: 320px;
+        background-color: #131d31;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 15px;
+        box-sizing: border-box;
+        gap: 15px;
+      }
+
+      /* Right Side Panel: Hosts untouched runtime bot containers safely */
+      .bot-app-window {
+        flex: 1;
+        position: relative;
+        background-color: var(--tp-white);
+        overflow: auto;
+      }
+
+      /* UI Control Components Design rules */
+      .panel-section {
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        padding: 12px;
+      }
+
+      .panel-section h4 {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .panel-badge {
+        font-size: 0.9rem;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+      .badge-live { background-color: var(--tp-red); color: var(--tp-white); }
+      .badge-violet { background-color: var(--tp-violet); color: var(--tp-white); }
+      .badge-amber { background-color: var(--tp-amber); color: var(--tp-navy); }
+
+      /* Form controls for Bounded Recovery view constraints */
+      .input-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .input-row span.val {
+        font-weight: bold;
+        color: var(--tp-white);
+      }
+
+      .action-grid-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+
+      .utility-btn {
+        background-color: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: var(--tp-white);
+        padding: 6px;
+        font-size: 1.1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: left;
+      }
+      .utility-btn:hover { background-color: rgba(255,255,255,0.12); }
+
+      /* Responsive rules for mobile screen limits */
+      @media (max-width: 768px) {
+        .main-workspace-grid { flex-direction: column; }
+        .sidebar-control-panel { width: 100%; height: 280px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
       }
     </style>
   </head>
@@ -133,76 +257,49 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- Outer Layer Mask Element: Title, Login, and Sign In Buttons -->
-    <header class="outer-nav-layer">
-      <h1 class="animated-title">Tradingprint AI</h1>
-      
-      <div class="auth-buttons-group">
-        <button class="nav-btn btn-login" onclick="redirectToDeriv('login')">Log in</button>
-        <button class="nav-btn btn-signin" onclick="redirectToDeriv('signup')">Sign in</button>
-      </div>
-    </header>
-
-    <!-- Slowly Moving Graphic Ribbon Right Under Navigation Layer -->
-    <div class="graph-container">
-      <svg class="moving-graph" viewBox="0 0 1000 60" preserveAspectRatio="none" xmlns="http://w3.org">
-        <path d="M 0 40 Q 125 15 250 45 T 500 30 Q 625 15 750 45 T 1000 30" 
-              fill="none" 
-              stroke="#ff444f" 
-              stroke-width="2" 
-              stroke-dasharray="4,4"/>
-      </svg>
+    <!-- MANDATORY RISK WARNING OVERLAY LAYER -->
+    <div class="risk-warning-banner">
+      Warning: Live Real-Money Trading Involved. Financial risk of loss exists. Trade responsibly within strict system limits.
     </div>
 
-    <!-- Application Mounting Targets remain perfectly untouched below -->
-    <div id="modal_root" class="modal-root"></div>
-    <div id="popup_root" class="popup-root"></div>
-    <div id="root"></div>
-
-    <!-- Operational Script handling clean redirection state without App ID -->
-    <script>
-      function redirectToDeriv(action) {
-        var currentUrl = window.location.origin + window.location.pathname;
-        var tokenKey = "34sb2Kw5AaeoKYyYQZ4j6";
-        
-        if (action === 'login') {
-          window.location.href = "https://deriv.com" + encodeURIComponent(currentUrl) + "&state=" + encodeURIComponent(tokenKey);
-        } else if (action === 'signup') {
-          window.location.href = "https://deriv.com";
-        }
-      }
-    </script>
-    
-    <!-- LiveChat script -->
-    <script type="text/javascript" defer>
-      window.__lc = window.__lc || {};
-      window.__lc.license = 12049137;
-      window.__lc.asyncInit = true;
-      (function (n, t, c) {
-        function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n); }
-        var e = {
-          _q: [], _h: null, _v: '2.0',
-          on: function () { i(["on", c.call(arguments)]); },
-          once: function () { i(["once", c.call(arguments)]); },
-          off: function () { i(["off", c.call(arguments)]); },
-          get: function () {
-            if (!e._h) throw new Error("LiveChatWidget is not yet initialized");
-            return i(["get", c.call(arguments)]);
-          },
-          call: function () { i(["call", c.call(arguments)]); },
-          init: function () {
-            var n = t.createElement("script");
-            n.async = !0;
-            n.type = "text/javascript";
-            n.src = "https://livechatinc.com";
-            t.head.appendChild(n);
-          }
-        };
-        !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e;
-      })(window, document, [].slice);
-    </script>
-    <!-- End LiveChat script -->
-  </body>
-</html>
-
+    <!-- STAND-ALONE PRODUCTION WRAP CONTAINER -->
+    <div class="outer-wrap-shell">
       
+      <!-- Isolated Top Navbar Layer -->
+      <header class="outer-nav-layer">
+        <h1 class="animated-title">TradingPrint AI</h1>
+        
+        <div class="auth-buttons-group">
+          <button class="nav-btn btn-login" onclick="redirectToDerivLive('login')">Log in</button>
+          <button class="nav-btn btn-signin" onclick="redirectToDerivLive('signup')">Sign in</button>
+        </div>
+      </header>
+
+      <!-- Animated Technical Indicator Ribbon Layer -->
+      <div class="graph-container">
+        <svg class="moving-graph" viewBox="0 0 1000 40" preserveAspectRatio="none" xmlns="http://w3.org">
+          <path d="M 0 25 Q 125 5 250 30 T 500 20 Q 625 5 750 30 T 1000 20" 
+                fill="none" 
+                stroke="#00bcd4" 
+                stroke-width="2" 
+                stroke-dasharray="5,5"/>
+        </svg>
+      </div>
+
+      <!-- MAIN SPLIT WORKSPACE INTERFACE -->
+      <div class="main-workspace-grid">
+        
+        <!-- SIDEBAR SHELL: AI Panels, System Metrics, and Risk Trackers -->
+        <aside class="sidebar-control-panel">
+          
+          <!-- Live Real Money Status Workspace view -->
+          <div class="panel-section">
+            <h4>Live Engine Status <span class="panel-badge badge-live">LIVE ENVIRONMENT</span></h4>
+            <div class="input-row"><span>Status:</span><span class="val" style="color: var(--tp-cyan);">Awaiting Bot Connection</span></div>
+            <div class="input-row"><span>Selected Asset:</span><span class="val">Volatility Indices</span></div>
+          </div>
+
+          <!-- Section 5 & 6: AI Display Panel & Scanners -->
+          <div class="panel-section">
+            <h4>AI Panel Scanners <span class="panel-badge badge-violet">AUTOMATED</span></h4>
+            <div class="action-grid-buttons">
