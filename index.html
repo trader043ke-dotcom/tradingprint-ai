@@ -15,245 +15,194 @@
       })(window, document, 'script', 'dataLayer', 'GTM-KV9538TF');
     </script>
     <!-- End Google Tag Manager -->
+    
     <meta charset="UTF-8" />
-    <link class="brand-link" rel="icon" type="image/svg+xml" href="<%= assetPrefix %>/deriv-logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="<%= assetPrefix %>/deriv-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="title" content="Automate Your Trades | Tradingprint AI" />
     <meta name="description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
     <meta property="og:title" content="Tradingprint AI" />
     <meta property="og:description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
     <title>Automate Your Trades | Tradingprint AI</title>
+    
     <style>
       :root {
         font-size: 62.5%;
       }
-      
-      /* Vibrant Dashboard Container */
-      .brand-header-dashboard {
+
+      /* Outer Layer Top Navigation Overlay Wrapper */
+      .outer-nav-layer {
+        position: relative;
+        z-index: 9999;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
+        padding: 15px 24px;
+        background-color: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      /* Animated Title Styles */
+      .animated-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #ff444f;
+        margin: 0;
+        letter-spacing: -0.5px;
+        opacity: 0;
+        transform: translateX(-15px);
+        animation: slideInFade 1.2s ease-out forwards;
+      }
+
+      @keyframes slideInFade {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Button Layout Grouping */
+      .auth-buttons-group {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      /* Base Style Rules for Outer Layer Interaction Elements */
+      .nav-btn {
+        font-size: 1.4rem;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        border: 2px solid transparent;
+      }
+
+      .btn-login {
+        color: #333333;
+        background-color: transparent;
+        border-color: #e5e5e5;
+      }
+
+      .btn-login:hover {
+        background-color: #f5f5f5;
+        border-color: #d0d0d0;
+      }
+
+      .btn-signin {
+        color: #ffffff;
+        background-color: #ff444f;
+      }
+
+      .btn-signin:hover {
+        background-color: #eb3e48;
+      }
+
+      /* Seamless Moving Background Graph Component */
+      .graph-container {
         position: relative;
         width: 100%;
-        max-width: 650px;
-        margin: 4rem auto 2rem auto;
-        padding: 2.5rem;
-        box-sizing: border-box;
-        border-radius: 12px;
-        background: #1C2026; /* Deriv Core Slate Gray Background */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        perspective: 1000px; /* Enables 3D context for nested letter flips */
+        height: 60px;
+        margin: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
       }
 
-      /* Animated Letter Segmented Title */
-      .animated-bot-title {
-        font-size: 4.6rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        display: flex;
-        gap: 0.2rem;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        margin-bottom: 2rem;
+      .moving-graph {
+        width: 200%;
+        height: 100%;
+        animation: slideGraph 15s linear infinite;
       }
 
-      /* Base Letter Block with 3D Flip Entrance & Perpetual Slower Wave Animation */
-      .animated-bot-title span {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(30px) rotateY(90deg) scale(0.5);
-        /* Slowed wave cycle down from 2.5s to 4.5s for a gentler, premium feel */
-        animation: flipEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-                  continuousWave 4.5s ease-in-out infinite alternate;
-      }
-
-      /* Individual Staggered Animation Delays for Layout Harmony */
-      .letter-1  { animation-delay: 0.1s, 0.9s; }
-      .letter-2  { animation-delay: 0.18s, 0.98s; }
-      .letter-3  { animation-delay: 0.26s, 1.06s; }
-      .letter-4  { animation-delay: 0.34s, 1.14s; }
-      .letter-5  { animation-delay: 0.42s, 1.22s; }
-      .letter-6  { animation-delay: 0.5s, 1.3s; }
-      .letter-7  { animation-delay: 0.58s, 1.38s; }
-      .letter-8  { animation-delay: 0.66s, 1.46s; }
-      .letter-9  { animation-delay: 0.74s, 1.54s; }
-      .letter-10 { animation-delay: 0.82s, 1.62s; }
-      .letter-11 { animation-delay: 0.9s, 1.7s; }
-      .letter-12 { animation-delay: 0.98s, 1.78s; }
-      .letter-13 { animation-delay: 1.1s, 1.9s; }  /* letter A */
-      .letter-14 { animation-delay: 1.18s, 1.98s; } /* letter I */
-
-      /* Distribution of All Core Deriv Colors Across Text */
-      .c-red    { color: #FF444F; text-shadow: 0 0 10px rgba(255, 68, 79, 0.3); }
-      .c-blue   { color: #2196F3; text-shadow: 0 0 10px rgba(33, 150, 243, 0.3); }
-      .c-yellow { color: #FFC03C; text-shadow: 0 0 10px rgba(255, 192, 60, 0.3); }
-      .c-green  { color: #00B67A; text-shadow: 0 0 10px rgba(0, 182, 122, 0.3); }
-
-      /* Spacing between brand phrases */
-      .space-divider {
-        margin-right: 1.5rem;
-      }
-
-      /* Multi-Color Multi-Layer Canvas Chart */
-      .moving-graph-canvas {
-        width: 100%;
-        height: 100px;
-        display: block;
-        opacity: 0;
-        animation: fadeInGraph 1.5s ease-out 1.4s forwards;
-        margin-bottom: 1.5rem;
-      }
-
-      /* Brand Compliance Risk Tag Styling */
-      .compliance-risk-tag {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #FFC03C; /* Deriv Warning/Risk Gold Accent */
-        background-color: rgba(255, 192, 60, 0.08);
-        border: 1px solid rgba(255, 192, 60, 0.25);
-        padding: 0.6rem 1.4rem;
-        border-radius: 20px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadeInRisk 1s ease-out 1.8s forwards;
-      }
-
-      .compliance-risk-tag::before {
-        content: "⚠️";
-        font-size: 1.2rem;
-      }
-
-      /* 3D Spin Entrance Keyframe */
-      @keyframes flipEntrance {
-        0% {
-          opacity: 0;
-          transform: translateY(30px) rotateY(90deg) scale(0.5);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0) rotateY(0deg) scale(1);
-        }
-      }
-
-      /* Continuous Floating Wave Breath Action (Slower Profile) */
-      @keyframes continuousWave {
-        0% {
-          transform: translateY(0);
-        }
-        100% {
-          transform: translateY(-5px);
-        }
-      }
-
-      @keyframes fadeInGraph {
-        0% { opacity: 0; transform: scaleY(0.7); }
-        100% { opacity: 1; transform: scaleY(1); }
-      }
-
-      @keyframes fadeInRisk {
-        0% { opacity: 0; transform: translateY(10px); }
-        100% { opacity: 1; transform: translateY(0); }
+      @keyframes slideGraph {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
       }
     </style>
   </head>
+  
   <body class="body theme theme--light">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://googletagmanager.com" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <noscript>
+      <iframe src="https://googletagmanager.com" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- Multi-Color Brand Dashboard Component -->
-    <div class="brand-header-dashboard">
-      <h1 class="animated-bot-title">
-        <!-- TRADINGPRINT (Red, Blue, Yellow distribution) -->
-        <span class="c-red letter-1">T</span>
-        <span class="c-red letter-2">r</span>
-        <span class="c-blue letter-3">a</span>
-        <span class="c-blue letter-4">d</span>
-        <span class="c-yellow letter-5">i</span>
-        <span class="c-yellow letter-6">n</span>
-        <span class="c-blue letter-7">g</span>
-        <span class="c-red letter-8">p</span>
-        <span class="c-red letter-9">r</span>
-        <span class="c-blue letter-10">i</span>
-        <span class="c-yellow letter-11">n</span>
-        <span class="c-yellow letter-12">t</span>
-        
-        <!-- Space Separator -->
-        <span class="space-divider"></span>
-        
-        <!-- AI (Emerald Green highlight) -->
-        <span class="c-green letter-13">A</span>
-        <span class="c-green letter-14">I</span>
-      </h1>
+    <!-- Outer Layer Mask Element: Title, Login, and Sign In Buttons -->
+    <header class="outer-nav-layer">
+      <h1 class="animated-title">Tradingprint AI</h1>
       
-      <!-- Real-time Financial Vector Canvas -->
-      <canvas id="liveMiniGraph" class="moving-graph-canvas"></canvas>
-      
-      <!-- Risk Warning Asset Tag -->
-      <div class="compliance-risk-tag">
-        Risk Warning: Trading involves high financial risk
+      <div class="auth-buttons-group">
+        <button class="nav-btn btn-login" onclick="redirectToDeriv('login')">Log in</button>
+        <button class="nav-btn btn-signin" onclick="redirectToDeriv('signup')">Sign in</button>
       </div>
+    </header>
+
+    <!-- Slowly Moving Graphic Ribbon Right Under Navigation Layer -->
+    <div class="graph-container">
+      <svg class="moving-graph" viewBox="0 0 1000 60" preserveAspectRatio="none" xmlns="http://w3.org">
+        <path d="M 0 40 Q 125 15 250 45 T 500 30 Q 625 15 750 45 T 1000 30" 
+              fill="none" 
+              stroke="#ff444f" 
+              stroke-width="2" 
+              stroke-dasharray="4,4"/>
+      </svg>
     </div>
 
+    <!-- Application Mounting Targets remain perfectly untouched below -->
     <div id="modal_root" class="modal-root"></div>
     <div id="popup_root" class="popup-root"></div>
     <div id="root"></div>
-    
-    <!-- Real-time Multi-Color Financial Vector Graph Engine -->
-    <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function() {
-        const canvas = document.getElementById('liveMiniGraph');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
+
+    <!-- Operational Script handling clean redirection state without App ID -->
+    <script>
+      function redirectToDeriv(action) {
+        var currentUrl = window.location.origin + window.location.pathname;
+        var tokenKey = "34sb2Kw5AaeoKYyYQZ4j6";
         
-        function resize() {
-          const dpr = window.devicePixelRatio || 1;
-          const rect = canvas.getBoundingClientRect();
-          canvas.width = rect.width * dpr;
-          canvas.height = rect.height * dpr;
-          ctx.scale(dpr, dpr);
+        if (action === 'login') {
+          window.location.href = "https://deriv.com" + encodeURIComponent(currentUrl) + "&state=" + encodeURIComponent(tokenKey);
+        } else if (action === 'signup') {
+          window.location.href = "https://deriv.com";
         }
-        window.addEventListener('resize', resize);
-        resize();
+      }
+    </script>
+    
+    <!-- LiveChat script -->
+    <script type="text/javascript" defer>
+      window.__lc = window.__lc || {};
+      window.__lc.license = 12049137;
+      window.__lc.asyncInit = true;
+      (function (n, t, c) {
+        function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n); }
+        var e = {
+          _q: [], _h: null, _v: '2.0',
+          on: function () { i(["on", c.call(arguments)]); },
+          once: function () { i(["once", c.call(arguments)]); },
+          off: function () { i(["off", c.call(arguments)]); },
+          get: function () {
+            if (!e._h) throw new Error("LiveChatWidget is not yet initialized");
+            return i(["get", c.call(arguments)]);
+          },
+          call: function () { i(["call", c.call(arguments)]); },
+          init: function () {
+            var n = t.createElement("script");
+            n.async = !0;
+            n.type = "text/javascript";
+            n.src = "https://livechatinc.com";
+            t.head.appendChild(n);
+          }
+        };
+        !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e;
+      })(window, document, [].slice);
+    </script>
+    <!-- End LiveChat script -->
+  </body>
+</html>
 
-        let pointsCount = 45;
-        let lineRed = Array.from({ length: pointsCount }, () => 50);
-        let lineBlue = Array.from({ length: pointsCount }, () => 45);
-        let lineGreen = Array.from({ length: pointsCount }, () => 55);
-
-        function animateGraph() {
-          const w = canvas.getBoundingClientRect().width;
-          const h = canvas.getBoundingClientRect().height;
-          ctx.clearRect(0, 0, w, h);
-          
-          const variance = () => (Math.random() - 0.5) * 5;
-          
-          let lastR = lineRed[lineRed.length - 1];
-          lineRed.push(Math.max(15, Math.min(h - 15, lastR + variance() + 0.2)));
-          lineRed.shift();
-
-          let lastB = lineBlue[lineBlue.length - 1];
-          lineBlue.push(Math.max(15, Math.min(h - 15, lastB + variance() - 0.1)));
-          lineBlue.shift();
-
-          let lastG = lineGreen[lineGreen.length - 1];
-          lineGreen.push(Math.max(15, Math.min(h - 15, lastG + variance() * 1.2)));
-          lineGreen.shift();
-
-          const step = w / (pointsCount - 1);
-
-          function drawTrendLine(points, colorHex, strokeWidth) {
-            ctx.beginPath();
-            ctx.lineWidth = strokeWidth;
-            ctx.strokeStyle = colorHex;
-            ctx.lineJoin = 'round';
-            ctx.lineCap = 'round';
-            
-            for (let i = 0; i < points.length; i++) {
+      
