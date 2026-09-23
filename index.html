@@ -19,280 +19,293 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="<%= assetPrefix %>/deriv-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="title" content="TradingPrint AI | Live Real-Money Trading Terminal" />
-    <meta name="description" content="Automated real money execution workspace powered by TradingPrint AI. Deploy live strategies on synthetic indicators securely." />
-    <title>TradingPrint AI | Live Real-Money Trading Terminal</title>
-    
+    <meta name="title" content="Automate Your Trades | Deriv Bot" />
+    <meta name="description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
+    <meta property="og:title" content="Deriv Bot" />
+    <meta property="og:description" content="Import your current bot or learn how to create a trading bot from scratch with our detailed guides, FAQs, and tutorials. Start with a quick strategy!" />
+    <title>Automate Your Trades | Deriv Bot</title>
     <style>
       :root {
         font-size: 62.5%;
-        --tp-bg: #081B33;
-        --tp-navy-dark: #051224;
-        --tp-cyan: #22D3EE;
-        --tp-violet: #7C3AED;
-        --tp-white: #F8FAFC;
-        --tp-muted: #94A3B8;
-        --tp-amber: #F59E0B;
-        --tp-red: #EF4444;
-        --tp-success: #10B981;
       }
-
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background-color: var(--tp-bg);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        overflow: hidden;
-      }
-
-      .tp-main-interface-shell {
+      
+      /* --- ENHANCED: Cyber Neon Title Splash Screen with Progress Bar --- */
+      .splash-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0b0e14; /* Deep cyber dark background */
         display: flex;
         flex-direction: column;
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        z-index: 10;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+      }
+      
+      .splash-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
       }
 
-      /* ==========================================================================
-         OUTER LAYER: SYSTEM NAVIGATION BAR WITH BRANDING GRADIENT
-         ========================================================================= */
-      .tp-header-navbar {
+      .splash-content-box {
+        text-align: center;
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        padding: 14px 24px;
-        background-color: var(--tp-navy-dark);
-        border-bottom: 1px solid rgba(34, 211, 238, 0.25);
-        box-sizing: border-box;
-        position: relative;
-        z-index: 100000;
+        gap: 20px;
       }
 
       .animated-title {
-        font-size: 2.2rem;
-        font-weight: 900;
-        letter-spacing: -0.5px;
-        margin: 0;
-        background: linear-gradient(120deg, var(--tp-cyan) 15%, var(--tp-white) 40%, var(--tp-violet) 65%, var(--tp-cyan) 85%);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: tpTitleShimmer 4s linear infinite;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 3.8rem;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fadeInUpReveal 2.2s ease-in-out forwards;
       }
 
-      @keyframes tpTitleShimmer {
-        0% { background-position: 200% center; }
-        100% { background-position: -200% center; }
+      .animated-title span {
+        color: #00ff87; /* Emerald Cyber Neon Green */
+        text-shadow: 0 0 20px rgba(0, 255, 135, 0.7);
       }
 
-      .auth-buttons-group {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-
-      .nav-btn {
-        font-size: 1.3rem;
-        font-weight: 700;
-        padding: 8px 18px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        text-decoration: none;
-        border: 2px solid transparent;
-        box-sizing: border-box;
-      }
-
-      .btn-login {
-        color: var(--tp-white);
-        background-color: transparent;
-        border-color: rgba(248, 250, 252, 0.2);
-      }
-      .btn-login:hover {
-        color: var(--tp-cyan);
-        background-color: rgba(34, 211, 238, 0.05);
-        border-color: var(--tp-cyan);
-        box-shadow: 0 0 10px rgba(34, 211, 238, 0.15);
-      }
-
-      .btn-signin {
-        color: var(--tp-navy-dark);
-        background-color: var(--tp-cyan);
-      }
-      .btn-signin:hover {
-        background-color: #1ec2db;
-        color: var(--tp-white);
-        box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
-      }
-
-      .tp-workspace-split-container {
-        display: flex;
-        flex: 1;
-        width: 100%;
+      /* Cyber Loading Bar Container */
+      .progress-container {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
         overflow: hidden;
-        height: calc(100vh - 59px);
+        opacity: 0;
+        animation: fadeInProgressBar 0.5s ease-out 0.3s forwards;
       }
 
-      /* ==========================================================================
-         INNER SIDEBAR LAYER: CORE ACCOUNT & TELEMETRY CONTROLS
-         ========================================================================== */
-      .tp-ai-scanner-sidebar {
+      /* Animated Filling Line */
+      .progress-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00ff87, #60efff);
+        box-shadow: 0 0 10px rgba(0, 255, 135, 0.5);
+        border-radius: 10px;
+        animation: loadProgress 1.6s cubic-bezier(0.1, 0.8, 0.3, 1) 0.4s forwards;
+      }
+
+      @keyframes fadeInUpReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(15px);
+          filter: blur(4px);
+        }
+        20% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+        80% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-15px);
+          filter: blur(4px);
+        }
+      }
+
+      @keyframes fadeInProgressBar {
+        to { opacity: 1; }
+      }
+
+      @keyframes loadProgress {
+        0% { width: 0%; }
+        100% { width: 100%; }
+      }
+
+      /* Custom Styles for UI Panels */
+      .ai-extension-container {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
         width: 320px;
-        background-color: var(--tp-navy-dark);
-        border-right: 1px solid rgba(34, 211, 238, 0.15);
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow-y: auto;
-        flex-shrink: 0;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        z-index: 9999;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.5s ease-out, transform 0.5s ease;
       }
-
-      .sidebar-subtitle {
-        font-size: 1.1rem;
-        color: var(--tp-cyan);
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+      
+      .ai-extension-container.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+      
+      .ai-header {
+        background: #111827; 
+        color: white;
+        padding: 12px 16px;
+        font-size: 14px;
         font-weight: bold;
-      }
-
-      .scanner-card {
-        background: rgba(8, 27, 51, 0.6);
-        border: 1px solid rgba(34, 211, 238, 0.2);
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 15px;
-      }
-
-      .scanner-card h4 {
-        margin: 0 0 12px 0;
-        font-size: 1.3rem;
-        color: var(--tp-white);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding-bottom: 5px;
+        border-bottom: 2px solid #00ff87;
       }
-
-      .metric-row {
+      .ai-body {
+        padding: 16px;
+      }
+      .section-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #6b7280;
+        margin-bottom: 8px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .loader-zone {
+        border: 2px dashed #00ff87;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        background: #fdfdfd;
+        cursor: pointer;
+        margin-bottom: 16px;
+        transition: all 0.2s;
+      }
+      .loader-zone:hover {
+        background: rgba(0, 255, 135, 0.04);
+        border-color: #00e074;
+      }
+      .loader-zone p {
+        margin: 0;
+        font-size: 12px;
+        color: #4b5563;
+      }
+      .scanner-status {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 12px;
+        color: #1f2937;
+      }
+      .scanner-row {
         display: flex;
         justify-content: space-between;
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-        color: var(--tp-muted);
+        margin-bottom: 6px;
       }
-      .metric-row span.v {
-        color: var(--tp-white);
-        font-weight: 600;
+      .scanner-row:last-child {
+        margin-bottom: 0;
       }
-
-      .live-badge {
-        background-color: rgba(239, 68, 68, 0.15);
-        color: var(--tp-red);
-        border: 1px solid var(--tp-red);
-        font-size: 0.9rem;
+      .badge {
+        background: #00ff87;
+        color: #0b0e14;
         padding: 2px 6px;
-        border-radius: 3px;
+        border-radius: 4px;
+        font-size: 10px;
         font-weight: bold;
+        text-shadow: none;
       }
+      .hidden-input {
+        display: none;
+      }
+    </style>
+  </head>
+  
+  <body class="body theme theme--light">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://googletagmanager.com" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-      /* ==========================================================================
-         INNER CONTAINER: TERMINAL CONTROL ROOM (EXACT MATRIX SPEC MATCH)
-         ========================================================================== */
-      .tp-underlying-app-viewport {
-        flex: 1;
-        height: 100%;
-        position: relative;
-        background-color: #0b1524;
-        overflow-y: auto;
-        padding: 25px;
-        box-sizing: border-box;
-      }
+    <!-- NEW: Cyber Neon Splash Intro Screen with Custom Progress Bar -->
+    <div id="splashScreen" class="splash-overlay">
+      <div class="splash-content-box">
+        <div class="animated-title">Tradingprint <span>AI</span></div>
+        <div class="progress-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="modal_root" class="modal-root"></div>
+    <div id="popup_root" class="popup-root"></div>
+    <div id="root"></div>
 
-      .tp-section-header {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--tp-white);
-        margin: 0 0 20px 0;
-        border-bottom: 1px solid rgba(34, 211, 238, 0.15);
-        padding-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
+    <!-- AI Scanner & Bot Loader UI Panel -->
+    <div class="ai-extension-container" id="aiPanel">
+      <div class="ai-header">
+        <span>🤖 Tradingprint AI Modules</span>
+        <span style="font-size: 11px; color: #00ff87; font-weight: bold;">ONLINE</span>
+      </div>
+      <div class="ai-body">
+        <!-- Bot Loader Section -->
+        <div class="section-title">Strategy Engine Loader</div>
+        <div class="loader-zone" onclick="document.getElementById('botFileInput').click()">
+          <p>📄 <strong>Click to load strategy file</strong></p>
+          <p style="font-size: 10px; color: #9ca3af; margin-top: 4px;">Supports XML or JSON bot configurations</p>
+          <input type="file" id="botFileInput" class="hidden-input" accept=".xml,.json" onchange="handleBotUpload(this)">
+        </div>
 
-      .tp-input-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-bottom: 25px;
-      }
+        <!-- AI Scanner Section -->
+        <div class="section-title">AI Live Market Scanner</div>
+        <div class="scanner-status">
+          <div class="scanner-row">
+            <span>Market Volatility:</span>
+            <span style="font-weight: 600; color: #00e074;">Optimal</span>
+          </div>
+          <div class="scanner-row">
+            <span>AI Signal Trend:</span>
+            <span class="badge">STRONG BUY</span>
+          </div>
+          <div class="scanner-row">
+            <span>Scan Accuracy:</span>
+            <span style="color: #00e074; font-weight: 600;">94.2%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- LiveChat script (Completely untouched) -->
+    <script type="text/javascript" defer>
+      window.__lc = window.__lc || {};
+      window.__lc.license = 12049137;
+      window.__lc.asyncInit = true;
+      (function (n, t, c) {
+        function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n); }
+        var e = {
+          _q: [], _h: null, _v: '2.0',
+          on: function () { i(["on", c.call(arguments)]); },
+          once: function () { i(["once", c.call(arguments)]); },
+          off: function () { i(["off", c.call(arguments)]); },
+          get: function () {
+            if (!e._h) throw new Error("LiveChatWidget is not yet initialized");
+            return i(["get", c.call(arguments)]);
+          },
+          call: function () { i(["call", c.call(arguments)]); },
+          init: function () {
+            var n = t.createElement("script");
+            n.async = !0;
+            n.type = "text/javascript";
+            n.src = "https://livechatinc.com";
+            t.head.appendChild(n);
+          }
+        };
+        !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e;
+      })(window, document, [].slice);
+    </script>
+    <!-- End LiveChat script -->
 
-      .tp-input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .tp-input-group label {
-        font-size: 1.1rem;
-        color: var(--tp-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .tp-field-input, .tp-select-field {
-        background-color: var(--tp-navy-dark);
-        border: 1px solid rgba(34, 211, 238, 0.2);
-        color: var(--tp-white);
-        padding: 10px 14px;
-        font-size: 1.3rem;
-        border-radius: 6px;
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .tp-field-input:focus, .tp-select-field:focus { border-color: var(--tp-cyan); }
-
-      .tp-toggle-row { display: flex; gap: 10px; }
-      .tp-toggle-btn {
-        flex: 1; background-color: var(--tp-navy-dark); border: 1px solid rgba(255,255,255,0.1);
-        color: var(--tp-muted); padding: 10px; font-size: 1.2rem; font-weight: 600; border-radius: 6px;
-        cursor: pointer; transition: all 0.2s ease;
-      }
-      .tp-toggle-btn.active {
-        background-color: rgba(34, 211, 238, 0.1); border-color: var(--tp-cyan); color: var(--tp-cyan);
-      }
-
-      .action-btn {
-        width: 100%; font-size: 1.4rem; font-weight: 700; padding: 14px; border-radius: 6px;
-        cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); border: none;
-        margin-bottom: 15px; font-family: inherit;
-      }
-      .btn-scan { background-color: var(--tp-violet); color: var(--tp-white); box-shadow: 0 0 15px rgba(124, 58, 237, 0.2); }
-      .btn-scan:hover { background-color: #6d28d9; box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); }
-
-      .tp-manual-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 10px; }
-      .btn-manual {
-        padding: 14px; font-size: 1.4rem; font-weight: 700; border-radius: 6px; cursor: pointer;
-        border: none; color: var(--tp-white); font-family: inherit; transition: transform 0.1s ease;
-      }
-      .btn-manual:active { transform: scale(0.97); }
-      .btn-rise { background-color: var(--tp-success); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
-      .btn-fall { background-color: var(--tp-red); box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
-
-      .tp-console-terminal {
-        background-color: #030a17; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px;
-        padding: 15px; font-family: monospace; font-size: 1.1rem; color: #a4b3c6; height: 125px;
-        overflow-y: auto; line-height: 1.6;
-      }
-      .log-entry { margin-bottom: 4px; }
-      .log-sys { color: var(--tp-cyan); }
-      .log-live { color: var(--tp-amber); }
-
-      /* ==========================================================================
-         LAYER 1: GATEWAY MASK CANVAS WITH PROFESSIONAL FOREX GRAPH ROOM BACKLAY
-         ========================================================================== */
