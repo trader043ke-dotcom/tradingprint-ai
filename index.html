@@ -6,7 +6,7 @@
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s),
+        var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
           dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
@@ -29,126 +29,114 @@
         font-size: 62.5%;
       }
       
-      /* --- ENHANCED: Cyber Neon Title Splash Screen with Direct Login Gateway --- */
+      /* --- FIXED LOG IN / SIGN UP GATEWAY PORTAL --- */
       .splash-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #0b0e14; /* Deep cyber dark background */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 100000;
-        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
-      }
-      
-      .splash-hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #0b0e14 !important; /* Premium deep dark trading canvas background */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 2147483647 !important; /* Absolute top visibility layer */
       }
 
       .splash-content-box {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        width: 100%;
-        max-width: 320px;
-        padding: 20px;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 90% !important;
+        max-width: 340px !important;
+        padding: 30px !important;
+        box-sizing: border-box !important;
       }
 
+      /* Animated Title Banner */
       .animated-title {
-        color: #ffffff;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 3.8rem;
-        font-weight: 800;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 3.6rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 3px !important;
+        text-transform: uppercase !important;
+        margin: 0 0 10px 0 !important;
       }
 
       .animated-title span {
-        color: #00ff87; /* Emerald Cyber Neon Green */
-        text-shadow: 0 0 20px rgba(0, 255, 135, 0.7);
+        color: #00ff87 !important; /* Vivid Cyber Neon Green */
+        text-shadow: 0 0 20px rgba(0, 255, 135, 0.7) !important;
       }
 
-      /* Cyber Loading Bar Container */
+      /* Dynamic Realtime Progress Bar */
       .progress-container {
-        width: 200px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        overflow: hidden;
-        transition: opacity 0.4s ease;
+        width: 220px !important;
+        height: 4px !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        margin-bottom: 10px !important;
       }
 
-      /* Animated Filling Line */
       .progress-bar-fill {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #00ff87, #60efff);
-        box-shadow: 0 0 10px rgba(0, 255, 135, 0.5);
-        border-radius: 10px;
-        animation: loadProgress 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        height: 100% !important;
+        width: 0% !important;
+        background: linear-gradient(90deg, #00ff87, #60efff) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 135, 0.5) !important;
+        border-radius: 10px !important;
+        animation: loadProgressEngine 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards !important;
       }
 
-      /* --- NEW: Interactive Authentic Entry Buttons --- */
+      /* --- ALWAYS VISIBLE INTERACTIVE BUTTONS BLOCK --- */
       .auth-action-box {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        margin-top: 10px;
-      }
-
-      .auth-action-box.show-buttons {
-        opacity: 1;
-        transform: translateY(0);
+        width: 100% !important;
+        display: flex !important; /* Forced visible immediately on launch */
+        flex-direction: column !important;
+        gap: 14px !important;
       }
 
       .gateway-btn {
-        width: 100%;
-        padding: 14px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: center;
-        text-transform: uppercase;
-        box-sizing: border-box;
+        width: 100% !important;
+        padding: 14px !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        text-align: center !important;
+        text-transform: uppercase !important;
+        box-sizing: border-box !important;
+        transition: all 0.2s ease !important;
       }
 
       .btn-login {
-        background: transparent;
-        color: #ffffff;
-        border: 2px solid #ffffff;
+        background: transparent !important;
+        color: #ffffff !important;
+        border: 2px solid #ffffff !important;
       }
 
       .btn-login:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: #00ff87 !important;
+        color: #00ff87 !important;
       }
 
       .btn-signup {
-        background: #ff444f; /* Retains native platform signature branding styling */
-        color: #ffffff;
-        border: none;
+        background: #ff444f !important; /* Authentic high-contrast brand accent */
+        color: #ffffff !important;
+        border: none !important;
       }
 
       .btn-signup:hover {
-        background: #e03a43;
+        background: #e03a43 !important;
+        box-shadow: 0 0 15px rgba(255, 68, 79, 0.4) !important;
       }
 
-      /* Custom Styles for Hidden Utilities UI Panel until Access Granted */
+      /* AI Utilities Sidebar Container Panel (Hidden under splash screen until login) */
       .ai-extension-container {
         position: fixed;
         bottom: 100px;
@@ -161,14 +149,7 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         z-index: 9999;
         overflow: hidden;
-        opacity: 0;
-        transform: scale(0.95);
-        transition: opacity 0.5s ease-out, transform 0.5s ease;
-      }
-      
-      .ai-extension-container.visible {
-        opacity: 1;
-        transform: scale(1);
+        display: none; /* Safely initialized by the gateway execution engine */
       }
       
       .ai-header {
@@ -201,11 +182,6 @@
         background: #fdfdfd;
         cursor: pointer;
         margin-bottom: 16px;
-        transition: all 0.2s;
-      }
-      .loader-zone:hover {
-        background: rgba(0, 255, 135, 0.04);
-        border-color: #00e074;
       }
       .loader-zone p {
         margin: 0;
@@ -225,9 +201,6 @@
         justify-content: space-between;
         margin-bottom: 6px;
       }
-      .scanner-row:last-child {
-        margin-bottom: 0;
-      }
       .badge {
         background: #00ff87;
         color: #0b0e14;
@@ -240,7 +213,7 @@
         display: none;
       }
 
-      @keyframes loadProgress {
+      @keyframes loadProgressEngine {
         0% { width: 0%; }
         100% { width: 100%; }
       }
@@ -254,20 +227,20 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Cyber Neon Splash Gateway Screen -->
+    <!-- Tradingprint AI Core Entry Gateway -->
     <div id="splashScreen" class="splash-overlay">
       <div class="splash-content-box">
         <div class="animated-title">Tradingprint <span>AI</span></div>
         
-        <!-- Loading line disappears smoothly when authorization choices show -->
+        <!-- Processing strip indicator line -->
         <div id="loadingLine" class="progress-container">
           <div class="progress-bar-fill"></div>
         </div>
 
-        <!-- Jump points visible immediately after title completion sequence -->
+        <!-- Action Items (Always visible immediately) -->
         <div id="authActions" class="auth-action-box">
-          <button class="gateway-btn btn-login" onclick="executeGateway('login')">Log In</button>
-          <button class="gateway-btn btn-signup" onclick="executeGateway('signup')">Sign Up Free</button>
+          <button type="button" class="gateway-btn btn-login" onclick="executeGateway('login')">Log In</button>
+          <button type="button" class="gateway-btn btn-signup" onclick="executeGateway('signup')">Sign Up Free</button>
         </div>
       </div>
     </div>
@@ -276,7 +249,7 @@
     <div id="popup_root" class="popup-root"></div>
     <div id="root"></div>
 
-    <!-- AI Scanner & Bot Loader UI Panel -->
+    <!-- AI Scanner & Bot Loader Platform Dashboard Module -->
     <div class="ai-extension-container" id="aiPanel">
       <div class="ai-header">
         <span>🤖 Tradingprint AI Modules</span>
@@ -310,6 +283,5 @@
       </div>
     </div>
     
-    <!-- LiveChat script (Completely untouched) -->
-    <script type="text/javascript" defer>
-      window.__lc = window.__lc || {};
+
+      
